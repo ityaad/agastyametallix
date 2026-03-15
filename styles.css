@@ -24,14 +24,14 @@ body {
 }
 
 .mini {
-  margin: 0 0 1rem;
+  margin: 0 0 0.5rem;
   color: rgba(245, 246, 247, 0.7);
   font-size: 0.95rem;
 }
 
 .footer {
   text-align: center;
-  padding: 1rem 1.5rem;
+  padding: 0.75rem 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   color: rgba(245, 246, 247, 0.7);
 }
@@ -52,7 +52,7 @@ a:hover {
 }
 
 .hero {
-  padding: 5rem 1.5rem 4rem;
+  padding: 2rem 1.5rem 2.5rem;
   text-align: center;
 }
 
@@ -60,6 +60,14 @@ a:hover {
   margin: 0;
   font-size: clamp(2.7rem, 7vw, 4.4rem);
   letter-spacing: -0.06em;
+}
+
+.logo {
+  display: block;
+  max-width: 160px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto 1.25rem;
 }
 
 .tagline {
