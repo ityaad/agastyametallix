@@ -5,11 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agastya Metallix</title>
 
+  <link rel="stylesheet" href="styles.css">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5WYMM49HD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G5WYMM49HD');
+  </script>
 </head>
 
 <body>
@@ -20,24 +29,28 @@
 
     <h1>Coming Soon!</h1>
     <p>We're working hard to bring you something amazing.</p>
-    <p>
+
+    <p class="email-line">
       Questions? Email us at 
       <a href="mailto:hello@agastyametallix.com">hello@agastyametallix.com</a>.
     </p>
   </div>
 
   <footer class="footer">
+    <div class="counter">
+      <div>
+        <span id="today">0</span>
+        <label>Today</label>
+      </div>
+      <div>
+        <span id="total">0</span>
+        <label>Total</label>
+      </div>
+    </div>
+
     <p>&copy; <span id="year"></span> &mdash; All rights reserved</p>
-
-    <p class="visitors">
-      Today: <span id="today-count">—</span>
-      &nbsp;•&nbsp;
-      Total: <span id="total-count">—</span>
-    </p>
-
-    <canvas id="sparkline" width="120" height="30"></canvas>
   </footer>
 
-  <script src="script.js" defer></script>
+  <script src="script.js"></script>
 </body>
 </html>

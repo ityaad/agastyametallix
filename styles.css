@@ -10,14 +10,15 @@ body {
   flex-direction: column;
   background: #080808;
   color: #e8e8e8;
-  font-family: 'Inter', -apple-system, sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
+/* Subtle glow */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255,255,255,0.03) 0%, transparent 70%);
+  background: radial-gradient(ellipse 60% 50%, rgba(255,255,255,0.03), transparent);
   pointer-events: none;
 }
 
@@ -28,17 +29,16 @@ body::before {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 3rem 2.5rem;
-  max-width: 440px;
+  padding: 3rem 2rem;
+  max-width: 520px; /* increased so text fits */
   margin: 0 auto;
 }
 
 .wordmark {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #a0a0a0;
   margin-bottom: 4rem;
+  color: #a0a0a0;
 }
 
 .progress-bar {
@@ -61,61 +61,83 @@ body::before {
 h1 {
   font-size: 2rem;
   font-weight: 300;
-  margin-bottom: 1rem;
 }
 
 p {
-  font-size: 0.875rem;
   color: #a0a0a0;
-  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
 }
 
+/* ✅ Force single-line email */
+.email-line {
+  white-space: nowrap;
+}
+
+/* ✨ Subtle hover glow (premium feel) */
 a {
   color: #a0a0a0;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
   text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.25s ease;
 }
 
+a:hover {
+  color: #ffffff;
+  border-bottom-color: rgba(255,255,255,0.5);
+  text-shadow: 0 0 6px rgba(255,255,255,0.25);
+}
+
+/* Footer */
 .footer {
   width: 100%;
-  text-align: center;
-  padding: 1rem;
+  padding: 1.5rem;
   border-top: 1px solid rgba(255,255,255,0.08);
-}
-
-.visitors {
-  margin-top: 0.4rem;
-  font-size: 0.65rem;
-  opacity: 0.75;
-}
-
-#today-count, #total-count {
-  font-variant-numeric: tabular-nums;
-  position: relative;
-}
-
-/* +1 animation */
-.increment {
-  position: absolute;
-  top: -10px;
-  right: -12px;
+  text-align: center;
+  background: linear-gradient(to top, rgba(255,255,255,0.03), transparent);
   font-size: 0.6rem;
-  opacity: 0;
-  animation: pop 1s ease forwards;
+  color: #8a8a8a;
 }
 
-@keyframes pop {
-  0% { opacity: 0; transform: translateY(6px); }
-  30% { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-10px); }
+/* Counter */
+.counter {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-bottom: 0.8rem;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
 }
 
-#sparkline {
+/* brighten on hover */
+.footer:hover .counter {
+  opacity: 1;
+}
+
+/* ✨ Counter micro animation */
+.counter span {
+  font-size: 1rem;
   display: block;
-  margin: 0.6rem auto 0;
-  opacity: 0.95;
+  transform: translateY(0);
+  transition: all 0.25s ease;
 }
 
+.footer:hover .counter span {
+  transform: translateY(-1px);
+}
+
+/* pulse effect when updating */
+.counter span.bump {
+  transform: translateY(-2px) scale(1.08);
+  opacity: 1;
+}
+
+.counter label {
+  font-size: 0.6rem;
+  color: #777;
+}
+
+/* Animation */
 @keyframes slide {
   0% { transform: translateX(-200%); }
   100% { transform: translateX(400%); }
