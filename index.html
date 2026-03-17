@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <!-- External CSS -->
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -29,10 +28,16 @@
 
   <footer class="footer">
     <p>&copy; <span id="year"></span> &mdash; All rights reserved</p>
+
+    <p class="visitors">
+      Today: <span id="today-count">—</span>
+      &nbsp;•&nbsp;
+      Total: <span id="total-count">—</span>
+    </p>
+
+    <canvas id="sparkline" width="120" height="30"></canvas>
   </footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <script src="script.js" defer></script>
 </body>
 </html>
