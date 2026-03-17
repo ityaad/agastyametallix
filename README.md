@@ -10,6 +10,7 @@ To prevent "domain takeover" attacks, verify `www.agastyametallix.com` in **GitH
 
 For more information, see [Verifying your custom domain for GitHub Pages](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages).
 
+---
 
 ### 2. Configure the Domain on GitHub Repository
 1. Go to this repository settings, then select **Pages** from the "Code and automation" sidebar.
@@ -17,6 +18,7 @@ For more information, see [Verifying your custom domain for GitHub Pages](https:
 
 > **Note:** Do not delete the `CNAME` file created at the root of this repository.
 
+---
 
 ### 3. Update DNS Provider Settings
 Log in to domain registrar portal and add the following DNS records:
@@ -42,11 +44,13 @@ For more information, see [Managing Custom Domains](https://docs.github.com/en/p
 | **A** | `@` | `185.199.111.153` |
 | **CNAME** | `www` | `username.github.io` |
 
+---
 
 ### 4. Verify and Secure
 1. **Wait for Propagation:** DNS changes can take up to 24 hours to take effect.
 2. **Enforce HTTPS:** Once the DNS check is successful on GitHub, return to the repository settings for pages and check **Enforce HTTPS** to secure the site.
 
+---
 
 ### 5. Deploy with GitHub Pages
 
@@ -61,6 +65,7 @@ Once enabled, the site will be available at:
 
 > Note: GitHub Pages only supports a single custom domain per repository. To make `www.agastyametallix.in` point to the same site, configure DNS for `www.agastyametallix.in` to CNAME to `www.agastyametallix.com` or URL redirection for `agastyametallix.in` to `https://www.agastyametallix.com`.
 
+---
 
-## 6. Local preview
+### 6. Local preview
 You can preview locally by opening `index.html` in a browser.
