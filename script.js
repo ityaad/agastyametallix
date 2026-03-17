@@ -6,7 +6,7 @@ const canvas = document.getElementById('sparkline');
 const ctx = canvas.getContext('2d');
 
 const CACHE_DURATION = 5 * 60 * 1000;
-const NAMESPACE = 'agastya';
+const NAMESPACE = 'agastyametallix';
 
 let hasAnimated = false;
 
