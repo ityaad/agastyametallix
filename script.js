@@ -1,5 +1,5 @@
 const SUPABASE_URL = "https://efhqbnhbwmvnavmnojgu.supabase.co";
-const SUPABASE_KEY = "__SUPABASE_API_KEY__";
+const SUPABASE_KEY = "sb_publishable_QSbifVg30Dxaw_947aCNHw_P_2l9w5L";
 
 const totalEl = document.getElementById('total');
 const todayEl = document.getElementById('today');
