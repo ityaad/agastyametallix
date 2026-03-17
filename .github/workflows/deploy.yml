@@ -13,6 +13,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Inject Supabase Key
+        run: |
+          sed -i "s|__SUPABASE_API_KEY__|${{ secrets.SUPABASE_API_KEY }}|g" script.js
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:

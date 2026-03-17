@@ -1,9 +1,12 @@
+const SUPABASE_URL = "https://efhqbnhbwmvnavmnojgu.supabase.co";
+const SUPABASE_KEY = "__SUPABASE_API_KEY__";
+
 const totalEl = document.getElementById('total');
 const todayEl = document.getElementById('today');
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
-/* Animate numbers */
+/* Animate */
 function animate(el, value) {
   let start = 0;
   const duration = 800;
@@ -17,7 +20,6 @@ function animate(el, value) {
     } else {
       el.textContent = value;
 
-      // ✨ trigger micro animation
       el.classList.add('bump');
       setTimeout(() => el.classList.remove('bump'), 250);
     }
@@ -26,37 +28,63 @@ function animate(el, value) {
   update();
 }
 
-/* Load counter */
-function loadCounter() {
-  const todayKey = new Date().toISOString().slice(0, 10);
-
-  // TOTAL (simulate global growth)
-  let total = parseInt(localStorage.getItem('total')) || 120; // start baseline
-  const randomGrowth = Math.floor(Math.random() * 3) + 1;
-  total += randomGrowth;
-  localStorage.setItem('total', total);
-
-  animate(totalEl, total);
-
-  // TODAY (session-aware)
-  let today = parseInt(localStorage.getItem(todayKey)) || 8;
-  today += 1;
-  localStorage.setItem(todayKey, today);
-
-  animate(todayEl, today);
-
-  // 🔥 Sync with GA event (feels real)
-  if (typeof gtag === "function") {
-    gtag('event', 'counter_viewed', {
-      value: total
+/* Fetch + Update global counter */
+async function updateCounter() {
+  try {
+    // GET current data
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/visitors?id=eq.1`, {
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`
+      }
     });
+
+    const data = await res.json();
+    let record = data[0];
+
+    let total = record.total_count;
+    let today = record.today_count;
+    let lastDate = record.last_updated;
+
+    const todayDate = new Date().toISOString().slice(0, 10);
+
+    // Reset daily counter if new day
+    if (lastDate !== todayDate) {
+      today = 0;
+    }
+
+    // increment
+    total += 1;
+    today += 1;
+
+    // UPDATE DB
+    await fetch(`${SUPABASE_URL}/rest/v1/visitors?id=eq.1`, {
+      method: "PATCH",
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        total_count: total,
+        today_count: today,
+        last_updated: todayDate
+      })
+    });
+
+    // animate UI
+    animate(totalEl, total);
+    animate(todayEl, today);
+
+  } catch (err) {
+    console.error("Counter failed:", err);
   }
 }
 
-/* Load on footer view */
+/* Load when footer visible */
 const observer = new IntersectionObserver(entries => {
   if (entries[0].isIntersecting) {
-    loadCounter();
+    updateCounter();
     observer.disconnect();
   }
 });
