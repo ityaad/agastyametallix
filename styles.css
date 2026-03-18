@@ -16,12 +16,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Subtle radial glow */
+/* Glow */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255,255,255,0.03) 0%, transparent 70%);
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255,255,255,0.03), transparent 70%);
   pointer-events: none;
 }
 
@@ -41,19 +41,17 @@ body::before {
 /* Wordmark */
 .wordmark {
   font-size: 0.7rem;
-  font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #a0a0a0;
   margin-bottom: 4rem;
 }
 
-/* Progress bar */
+/* Progress */
 .progress-bar {
   width: 100%;
   height: 1px;
   background: rgba(255,255,255,0.06);
-  border-radius: 999px;
   margin-bottom: 4rem;
   overflow: hidden;
 }
@@ -61,18 +59,17 @@ body::before {
 .progress-bar::after {
   content: '';
   display: block;
-  height: 100%;
   width: 35%;
+  height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
-  animation: slide 2.2s ease-in-out infinite;
+  animation: slide 2.2s infinite;
 }
 
 /* Text */
 h1 {
   font-size: 2rem;
   font-weight: 300;
-  letter-spacing: -0.04em;
-  color: #ffffff;
+  color: #fff;
   margin-bottom: 1rem;
 }
 
@@ -82,10 +79,38 @@ p {
   margin-bottom: 1.5rem;
 }
 
+/* Email */
+.email-line {
+  white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+  .email-line {
+    white-space: normal;
+    line-height: 1.6;
+  }
+}
+
+/* Typing cursor */
+#emailText::after {
+  content: '|';
+  margin-left: 4px;
+  opacity: 0.6;
+  animation: blink 1.2s infinite;
+}
+
+/* Link */
+a {
+  color: #c2c2c2;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.3s ease;
+}
+
 a:hover {
-  color: #ffffff;
+  color: #fff;
   border-bottom-color: rgba(255,255,255,0.6);
-  text-shadow: 0 0 6px rgba(255,255,255,0.3); /* subtle glow */
+  text-shadow: 0 0 6px rgba(255,255,255,0.3);
 }
 
 /* Footer */
@@ -94,36 +119,27 @@ a:hover {
   padding: 1.5rem 1rem;
   border-top: 1px solid rgba(255,255,255,0.08);
   background: linear-gradient(to top, rgba(255,255,255,0.03), transparent);
-
   display: flex;
   justify-content: center;
-  align-items: center;
-
-  text-align: center;
-  font-size: 0.65rem;
-  color: #8a8a8a;
 }
 
-/* Inner wrapper (fixes centering issue) */
 .footer-inner {
   width: 100%;
   max-width: 420px;
-  margin: 0 auto;
+  text-align: center;
 }
 
 /* Counter */
 .counter {
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
   gap: 2rem;
   margin-bottom: 0.5rem;
   opacity: 0.5;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s;
 }
 
-/* Counter blocks */
 .counter div {
   display: flex;
   flex-direction: column;
@@ -131,56 +147,31 @@ a:hover {
   min-width: 80px;
 }
 
-/* Numbers */
 .counter span {
-  font-size: 0.8rem;
-  display: block;
-  transition: transform 0.2s ease;
+  font-size: 1rem;
+  transition: transform 0.2s;
 }
 
-/* Micro animation */
 .counter span.bump {
   transform: scale(1.2);
 }
 
-/* Labels */
 .counter label {
   font-size: 0.6rem;
   color: #777;
-  letter-spacing: 0.06em;
 }
 
-/* Hover brighten */
 .footer:hover .counter {
   opacity: 1;
 }
 
-/* Animation */
+/* Animations */
 @keyframes slide {
   0% { transform: translateX(-200%); }
   100% { transform: translateX(400%); }
 }
 
-/* Email link */
-a {
-  color: #cfcfcf;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
-  transition: all 0.3s ease;
-}
-
-/* Email line (force single line) */
-.email-line {
-  white-space: nowrap;
-  font-size: 0.85rem;
-}
-
-.mobile-break {
-  display: none;
-}
-
-@media (max-width: 520px) {
-  .mobile-break {
-    display: block; /* forces clean split */
-  }
+@keyframes blink {
+  0%,100% { opacity: 0; }
+  50% { opacity: 0.6; }
 }
