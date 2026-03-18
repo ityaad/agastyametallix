@@ -5,20 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agastya Metallix</title>
 
-  <link rel="stylesheet" href="styles.css">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5WYMM49HD"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-G5WYMM49HD');
-  </script>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -28,27 +19,32 @@
     <div class="progress-bar"></div>
 
     <h1>Coming Soon!</h1>
+
     <p>We're working hard to bring you something amazing.</p>
 
     <p class="email-line">
-      Questions? Email us at 
+      Questions? Email us at <br class="mobile-break">
       <a href="mailto:hello@agastyametallix.com">hello@agastyametallix.com</a>.
     </p>
   </div>
 
   <footer class="footer">
-    <div class="counter">
-      <div>
-        <span id="today">0</span>
-        <label>Today</label>
-      </div>
-      <div>
-        <span id="total">0</span>
-        <label>Total</label>
-      </div>
-    </div>
+    <div class="footer-inner">
 
-    <p>&copy; <span id="year"></span> &mdash; All rights reserved</p>
+      <div class="counter">
+        <div>
+          <span id="todayCount">0</span>
+          <label>TODAY</label>
+        </div>
+        <div>
+          <span id="totalCount">0</span>
+          <label>TOTAL</label>
+        </div>
+      </div>
+
+      <p>&copy; <span id="year"></span> &mdash; All rights reserved</p>
+
+    </div>
   </footer>
 
   <script src="script.js"></script>

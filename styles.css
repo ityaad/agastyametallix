@@ -1,27 +1,31 @@
+/* Reset */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* Body */
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background: #080808;
   color: #e8e8e8;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Subtle glow */
+/* Subtle radial glow */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: radial-gradient(ellipse 60% 50%, rgba(255,255,255,0.03), transparent);
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255,255,255,0.03) 0%, transparent 70%);
   pointer-events: none;
 }
 
+/* Container */
 .container {
   flex: 1;
   display: flex;
@@ -30,21 +34,26 @@ body::before {
   justify-content: center;
   text-align: center;
   padding: 3rem 2rem;
-  max-width: 520px; /* increased so text fits */
+  max-width: 440px;
   margin: 0 auto;
 }
 
+/* Wordmark */
 .wordmark {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+  font-weight: 500;
   letter-spacing: 0.22em;
-  margin-bottom: 4rem;
+  text-transform: uppercase;
   color: #a0a0a0;
+  margin-bottom: 4rem;
 }
 
+/* Progress bar */
 .progress-bar {
   width: 100%;
   height: 1px;
   background: rgba(255,255,255,0.06);
+  border-radius: 999px;
   margin-bottom: 4rem;
   overflow: hidden;
 }
@@ -55,90 +64,123 @@ body::before {
   height: 100%;
   width: 35%;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
-  animation: slide 2.2s infinite;
+  animation: slide 2.2s ease-in-out infinite;
 }
 
+/* Text */
 h1 {
   font-size: 2rem;
   font-weight: 300;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  margin-bottom: 1rem;
 }
 
 p {
+  font-size: 0.875rem;
   color: #a0a0a0;
-  margin-top: 1rem;
-  font-size: 0.9rem;
-}
-
-/* ✅ Force single-line email */
-.email-line {
-  white-space: nowrap;
-}
-
-/* ✨ Subtle hover glow (premium feel) */
-a {
-  color: #a0a0a0;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
-  transition: all 0.25s ease;
+  margin-bottom: 1.5rem;
 }
 
 a:hover {
   color: #ffffff;
-  border-bottom-color: rgba(255,255,255,0.5);
-  text-shadow: 0 0 6px rgba(255,255,255,0.25);
+  border-bottom-color: rgba(255,255,255,0.6);
+  text-shadow: 0 0 6px rgba(255,255,255,0.3); /* subtle glow */
 }
 
 /* Footer */
 .footer {
   width: 100%;
-  padding: 1.5rem;
+  padding: 1.5rem 1rem;
   border-top: 1px solid rgba(255,255,255,0.08);
-  text-align: center;
   background: linear-gradient(to top, rgba(255,255,255,0.03), transparent);
-  font-size: 0.6rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  font-size: 0.65rem;
   color: #8a8a8a;
+}
+
+/* Inner wrapper (fixes centering issue) */
+.footer-inner {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
 }
 
 /* Counter */
 .counter {
   display: flex;
   justify-content: center;
-  gap: 3rem;
-  margin-bottom: 0.8rem;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 0.5rem;
   opacity: 0.5;
   transition: opacity 0.3s ease;
 }
 
-/* brighten on hover */
-.footer:hover .counter {
-  opacity: 1;
+/* Counter blocks */
+.counter div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80px;
 }
 
-/* ✨ Counter micro animation */
+/* Numbers */
 .counter span {
-  font-size: 1rem;
+  font-size: 0.8rem;
   display: block;
-  transform: translateY(0);
-  transition: all 0.25s ease;
+  transition: transform 0.2s ease;
 }
 
-.footer:hover .counter span {
-  transform: translateY(-1px);
-}
-
-/* pulse effect when updating */
+/* Micro animation */
 .counter span.bump {
-  transform: translateY(-2px) scale(1.08);
-  opacity: 1;
+  transform: scale(1.2);
 }
 
+/* Labels */
 .counter label {
   font-size: 0.6rem;
   color: #777;
+  letter-spacing: 0.06em;
+}
+
+/* Hover brighten */
+.footer:hover .counter {
+  opacity: 1;
 }
 
 /* Animation */
 @keyframes slide {
   0% { transform: translateX(-200%); }
   100% { transform: translateX(400%); }
+}
+
+/* Email link */
+a {
+  color: #cfcfcf;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.3s ease;
+}
+
+/* Email line (force single line) */
+.email-line {
+  white-space: nowrap;
+  font-size: 0.85rem;
+}
+
+.mobile-break {
+  display: none;
+}
+
+@media (max-width: 520px) {
+  .mobile-break {
+    display: block; /* forces clean split */
+  }
 }
